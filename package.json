@@ -17,14 +17,12 @@
     "deploy": "gh-pages -d build"
   },
   "config": {
-    "title": "React + Material-UI + Firebase",
-
+    "title": "Fitness App",
     "theme": {
-      "primaryColor": "blue",
-      "secondaryColor": "red",
+      "primaryColor": "cyan",
+      "secondaryColor": "pink",
       "type": "light"
     },
-
     "firebase": {
       "apiKey": "AIzaSyDYZOrZVpXkPQD6J31mb9t2eIIxmGEJK-Q",
       "authDomain": "react-material-ui-firebase.firebaseapp.com",
@@ -43,6 +41,7 @@
     "@sentry/browser": "^5.10.2",
     "firebase": "^7.6.0",
     "lodash": "^4.17.15",
+    "material-table": "^1.54.2",
     "mdi-material-ui": "^6.9.0",
     "moment": "^2.24.0",
     "numeral": "^2.0.6",
@@ -50,6 +49,7 @@
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
+    "react-select": "^3.0.8",
     "react-swipeable-views": "^0.13.1",
     "reading-time": "^1.1.3",
     "typeface-roboto": "^0.0.75",
@@ -59,7 +59,6 @@
     "gh-pages": "^2.1.1"
   },
   "private": true,
-
   "eslintConfig": {
     "extends": "react-app"
   },

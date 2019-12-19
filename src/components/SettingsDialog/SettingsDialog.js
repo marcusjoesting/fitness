@@ -53,13 +53,6 @@ const tabs = [
     icon: <PaletteIcon />,
     label: 'Appearance'
   },
-
-  {
-    key: 'links',
-    icon: <LinkIcon />,
-    label: 'Links'
-  },
-
   {
     key: 'security',
     icon: <SecurityIcon />,
@@ -186,11 +179,6 @@ class SettingsDialog extends Component {
             openSnackbar={openSnackbar}
           />
 
-          <LinksTab
-            theme={theme}
-
-            openSnackbar={openSnackbar}
-          />
 
           <SecurityTab
             user={user}

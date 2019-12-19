@@ -34,19 +34,6 @@ class AuthProviderList extends Component {
 
     const authProviders = [
       {
-        providerId: 'apple.com',
-        theme: createMuiTheme({
-          palette: {
-            primary: {
-              main: '#000000',
-              contrastText: '#ffffff'
-            }
-          }
-        }),
-        icon: <AppleIcon />,
-        name: 'Apple'
-      },
-      {
         providerId: 'facebook.com',
         theme: createMuiTheme({
           palette: {
@@ -85,45 +72,7 @@ class AuthProviderList extends Component {
         icon: <GoogleIcon />,
         name: 'Google'
       },
-      {
-        providerId: 'microsoft.com',
-        theme: createMuiTheme({
-          palette: {
-            primary: {
-              main: '#f65314',
-              contrastText: '#ffffff'
-            }
-          }
-        }),
-        icon: <MicrosoftIcon />,
-        name: 'Microsoft'
-      },
-      {
-        providerId: 'twitter.com',
-        theme: createMuiTheme({
-          palette: {
-            primary: {
-              main: '#1da1f2',
-              contrastText: '#ffffff'
-            }
-          }
-        }),
-        icon: <TwitterIcon />,
-        name: 'Twitter'
-      },
-      {
-        providerId: 'yahoo.com',
-        theme: createMuiTheme({
-          palette: {
-            primary: {
-              main: '#410093',
-              contrastText: '#ffffff'
-            }
-          }
-        }),
-        icon: <YahooIcon />,
-        name: 'Yahoo'
-      }
+
     ];
 
     if (gutterBottom) {

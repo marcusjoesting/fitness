@@ -1,28 +1,21 @@
 import React, { Component } from 'react';
-
 import PropTypes from 'prop-types';
-
 import { withRouter } from 'react-router-dom';
-
 import { auth } from '../../firebase';
-
 import { withStyles } from '@material-ui/core/styles';
-
 import Fab from '@material-ui/core/Fab';
-
 import HomeIcon from '@material-ui/icons/Home';
-
 import GitHubCircleIcon from 'mdi-material-ui/GithubCircle';
-
 import authentication from '../../services/authentication';
-
 import EmptyState from '../EmptyState';
+import Workouts from "../Workouts";
 
 const styles = (theme) => ({
   buttonIcon: {
     marginRight: theme.spacing(1)
   }
 });
+
 
 class HomeContent extends Component {
   signInWithEmailLink = () => {
@@ -83,10 +76,7 @@ class HomeContent extends Component {
 
     if (user) {
       return (
-        <EmptyState
-          icon={<HomeIcon />}
-          title="Home"
-        />
+        <Workouts/>
       );
     }
 

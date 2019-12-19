@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-
 import PropTypes from 'prop-types';
-
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
-
+import Typography from "@material-ui/core/Typography/Typography";
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -26,23 +24,7 @@ class AboutDialog extends Component {
         <DialogTitle>{process.env.REACT_APP_TITLE}</DialogTitle>
 
         <DialogContent>
-          <List disablePadding>
-            <ListItem>
-              <ListItemText
-                primary="Version"
-                secondary={process.env.REACT_APP_VERSION}
-              />
-            </ListItem>
-
-            {user &&
-              <ListItem>
-                <ListItemText
-                  primary="UID"
-                  secondary={user.uid}
-                />
-              </ListItem>
-            }
-          </List>
+            <Typography>This is a fitness app to use if you want to stay...fit</Typography>
         </DialogContent>
 
         <DialogActions>

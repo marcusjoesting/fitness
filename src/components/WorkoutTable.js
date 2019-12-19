@@ -33,7 +33,7 @@ export default function WorkoutTable(props) {
     const [addLift, setAddLift] = useState(false)
     const classes = useStyles()
     return (
-        <Grid item container justify='flex-start' spacing={0} xs={6}>
+        <Grid item container justify='center' spacing={2} xs={12} sm={8} md={6}>
 
 
                 <Grid item xs={12}>
@@ -41,22 +41,46 @@ export default function WorkoutTable(props) {
                                                   data={props.lifts}
                                                   title={props.title}
                                                   options={{actionsColumnIndex: 5,}}
-                                                  actions={[
-                                                      {icon: 'delete', tootltip: 'Delete Lift', onClick: (event, rowData) => alert("You deleted " + rowData.name)},
-                                                      {icon: 'edit', tooltip: 'Edit Lift', onClick: (event, rowData) => alert("You are trying to edit " + rowData.name)}
-                                                      ]}
+                                                   editable={{
+                                                       onRowUpdate: (newData, oldData) =>
+                                                           new Promise((resolve, reject) => {
+                                                               setTimeout(() => {
+                                                                   {
+                                                                       const data = [...props.lifts];
+                                                                       const index = data.indexOf(oldData);
+                                                                       data[index] = newData;
+                                                                       props.setLifts(props.index, data);
+                                                                   }
+                                                                   resolve()
+                                                               }, 1000)
+                                                           }),
+                                                       onRowDelete: oldData =>
+                                                           new Promise((resolve, reject) => {
+                                                               setTimeout(() => {
+                                                                   {
+                                                                       let data = [...props.lifts];
+                                                                       const index = data.indexOf(oldData);
+                                                                       data.splice(index, 1);
+                                                                       props.setLifts(props.index, data);
+                                                                   }
+                                                                   resolve()
+                                                               }, 1000)
+                                                           }),
+                                                   }}
                 />
                 </Grid>
-            <Grid item xs={1}>
-                <Tooltip title={'Delete Table'}>
-                <Typography onClick={() => props.deleteTable(props.index)} className={classes.delete} variant={'h5'}>X</Typography>
-                </Tooltip>
-            </Grid>
             {addLift ?
-            <WorkoutForm setAddLift={setAddLift} className={classes.form} setLifts={props.setLifts} title={props.title} index={props.index} lifts={props.lifts}/>
+                <Paper className={classes.paper}>
+                    <WorkoutForm setAddLift={setAddLift} className={classes.form} setLifts={props.setLifts} title={props.title} index={props.index} lifts={props.lifts}/>
+                </Paper>
                 :
-                <Grid item xs={10}><Button className={classes.button} variant='contained' color='primary' onClick={() => setAddLift(true)}>Add new {props.title} lift</Button></Grid>
+                <Grid item xs={4}><Button fullWidth className={classes.button} variant='contained' color={'secondary'} onClick={() => setAddLift(true)}>+ Add new {props.title} workout +</Button></Grid>
             }
+{/*            <Grid item xs={1}>
+                <Tooltip title={'Delete Table'}>
+                    <Typography onClick={() => props.deleteTable(props.index)} className={classes.delete} variant={'h5'}>X</Typography>
+                </Tooltip>
+            </Grid>*/}
         </Grid>
     )
 }

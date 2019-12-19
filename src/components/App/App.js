@@ -1,23 +1,20 @@
 import React, { Component } from 'react';
-
 import readingTime from 'reading-time';
-
 import { MuiThemeProvider } from '@material-ui/core/styles';
-
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
-
 import { auth, firestore } from '../../firebase';
 import authentication from '../../services/authentication';
 import theming from '../../services/theming';
-
 import ErrorBoundary from '../ErrorBoundary';
 import LaunchScreen from '../LaunchScreen';
 import Bar from '../Bar';
 import Router from '../Router';
 import DialogHost from '../DialogHost';
+import Container from "@material-ui/core/Container";
 
+import { withStyles } from '@material-ui/styles';
 const initialState = {
   ready: false,
   performingAction: false,
@@ -55,9 +52,14 @@ const initialState = {
     autoHideDuration: 0,
     message: '',
     open: false
-  }
+  },
+  openMenu: false
 };
+const drawerWidth = 240;
 
+const styles = theme => ({
+
+})
 class App extends Component {
   constructor(props) {
     super(props);
@@ -75,6 +77,10 @@ class App extends Component {
       userData: null
     }, callback);
   };
+
+  handleDrawerClose = () => {
+
+  }
 
   setTheme = (theme, callback) => {
     if (!theme) {
@@ -234,7 +240,7 @@ class App extends Component {
       deleteAccountDialog,
       signOutDialog
     } = this.state;
-
+    const { classes } = this.props
     const { snackbar } = this.state;
 
     return (
@@ -243,7 +249,7 @@ class App extends Component {
 
         <ErrorBoundary>
           {!ready &&
-            <LaunchScreen />
+          <LaunchScreen/>
           }
 
           {ready &&
@@ -261,13 +267,9 @@ class App extends Component {
                 onSettingsClick={() => this.openDialog('settingsDialog')}
                 onSignOutClick={() => this.openDialog('signOutDialog')}
               />
-
-              <Router
-                user={user}
-
-                openSnackbar={this.openSnackbar}
-              />
-
+              <Container maxWidth={'xl'}>
+                <Router user={user} openSnackbar={this.openSnackbar}/>
+              </Container>
               <DialogHost
                 user={user}
                 dialogs={
@@ -461,4 +463,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withStyles(styles)(App);

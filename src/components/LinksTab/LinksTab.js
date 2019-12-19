@@ -91,12 +91,6 @@ class LinksTab extends Component {
 
     const authProviders = [
       {
-        providerId: 'apple.com',
-        color: '#000000',
-        icon: <AppleIcon />,
-        name: 'Apple'
-      },
-      {
         providerId: 'facebook.com',
         color: '#3c5a99',
         icon: <FacebookBoxIcon />,
@@ -114,24 +108,7 @@ class LinksTab extends Component {
         icon: <GoogleIcon />,
         name: 'Google'
       },
-      {
-        providerId: 'microsoft.com',
-        color: '#f65314',
-        icon: <MicrosoftIcon />,
-        name: 'Microsoft'
-      },
-      {
-        providerId: 'twitter.com',
-        color: '#1da1f2',
-        icon: <TwitterIcon />,
-        name: 'Twitter'
-      },
-      {
-        providerId: 'yahoo.com',
-        color: '#410093',
-        icon: <YahooIcon />,
-        name: 'Yahoo'
-      }
+
     ];
 
     return (

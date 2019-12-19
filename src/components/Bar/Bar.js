@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-
 import PropTypes from 'prop-types';
-
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -9,22 +7,23 @@ import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
-
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-
 import PersonIcon from '@material-ui/icons/Person';
-
 import authentication from '../../services/authentication';
+import clsx from "clsx";
+import MenuIcon from "@material-ui/icons/Menu";
 
 class Bar extends Component {
+
   constructor(props) {
     super(props);
 
     this.state = {
       menu: {
         anchorEl: null
-      }
+      },
+      open: false
     };
   }
 
@@ -107,8 +106,9 @@ class Bar extends Component {
     return (
       <AppBar color="primary" position="static">
         <Toolbar variant="regular">
+
           <Box display="flex" flexGrow={1}>
-            <Typography color="inherit" variant="h6">{process.env.REACT_APP_TITLE}</Typography>
+            <Typography color="inherit" align='center' variant="h6">{process.env.REACT_APP_TITLE}</Typography>
           </Box>
 
           {user &&

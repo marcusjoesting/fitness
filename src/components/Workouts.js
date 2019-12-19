@@ -9,6 +9,7 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import Tooltip from "@material-ui/core/Tooltip";
 const useStyles = makeStyles(theme=> ({
     paper: {
         padding: theme.spacing(2),
@@ -44,9 +45,9 @@ const TableForm = props => {
 }
 const columns = [
     {title: 'Name of workout', field:'name'},
+    {title: 'Weight', field:'weight'},
     {title: 'Sets', field:'sets'},
     {title: 'Reps', field:'reps'},
-    {title: 'Weight', field:'weight'},
     {title: 'Muscle Group', field:'muscleGroup'}
 ]
 
@@ -86,7 +87,7 @@ export default function Workouts(props) {
     },[workouts])
     return (
         <Grid container justify={'center'} spacing={5}>
-            <Grid item xs={12}><Typography variant={'h4'} color={'primary'}>Workouts</Typography></Grid>
+            <Grid item xs={12}><Typography variant={'h4'} align='center' color={'primary'}>Workouts</Typography></Grid>
 
             {workouts && workouts.map((workout,index) => {
                return (
@@ -94,14 +95,14 @@ export default function Workouts(props) {
                    )
             })}
 
-            <Grid item xs={10}>
-            </Grid>
-            <Grid item xs={2}>
+            <Grid item xs={12}>
                 {adding ? <TableForm lifts={workouts} setLifts={setWorkouts} setAdding={setAdding}/>
                 :
-                <Fab color={'primary'} onClick={() => setAdding(true)}>
-                    <AddIcon/>
-                </Fab>
+                    <Tooltip title={'Add Table'}>
+                        <Fab color={'secondary'} onClick={() => setAdding(true)}>
+                            <AddIcon/>
+                        </Fab>
+                    </Tooltip>
                 }
             </Grid>
 

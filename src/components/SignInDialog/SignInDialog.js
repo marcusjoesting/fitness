@@ -448,14 +448,14 @@ class SignInDialog extends Component {
         <DialogActions>
           <Button color="primary" onClick={dialogProps.onClose}>Cancel</Button>
 
-          <Button
+{/*          <Button
             color="primary"
             disabled={!emailAddress || performingAction}
             variant="outlined"
 
             onClick={this.resetPassword}>
             Reset password
-          </Button>
+          </Button>*/}
 
           {this.getSignInButton()}
         </DialogActions>
