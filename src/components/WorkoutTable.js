@@ -33,7 +33,7 @@ export default function WorkoutTable(props) {
     const [addLift, setAddLift] = useState(false)
     const classes = useStyles()
     return (
-        <Grid item container justify='center' spacing={2} xs={12} sm={8} md={6}>
+        <Grid item container justify='center' spacing={2} xs={12} sm={12} md={6}>
 
 
                 <Grid item xs={12}>

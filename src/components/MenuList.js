@@ -8,21 +8,21 @@ import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
-
+import TodayIcon from '@material-ui/icons/Today';
 export default function MenuList(props) {
     return (
         <div>
-            <ListItem button>
+            <ListItem button onClick={() => window.location.href = '/'}>
                 <ListItemIcon>
                     <FitnessCenterIcon/>
                 </ListItemIcon>
                 <ListItemText primary="Workouts"/>
             </ListItem>
-            <ListItem button>
+            <ListItem button onClick={() => window.location.href = '/calendar/'}>
                 <ListItemIcon>
-                    <ShoppingCartIcon/>
+                    <TodayIcon/>
                 </ListItemIcon>
-                <ListItemText primary="Orders"/>
+                <ListItemText primary="Workout Schedule"/>
             </ListItem>
             <ListItem button>
                 <ListItemIcon>

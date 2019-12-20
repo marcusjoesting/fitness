@@ -11,7 +11,6 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import PersonIcon from '@material-ui/icons/Person';
 import authentication from '../../services/authentication';
-import clsx from "clsx";
 import MenuIcon from "@material-ui/icons/Menu";
 
 class Bar extends Component {
@@ -29,7 +28,6 @@ class Bar extends Component {
 
   getAvatar = () => {
     const { user } = this.props;
-
     if (!user) {
       return null;
     }
@@ -90,7 +88,10 @@ class Bar extends Component {
     this.closeMenu();
     this.props.onSignOutClick();
   };
-
+  toggleDrawer = (e) => {
+    const {toggleMenu} = this.props
+    toggleMenu()
+  }
   render() {
     // Properties
     const { performingAction, user } = this.props;
@@ -106,6 +107,9 @@ class Bar extends Component {
     return (
       <AppBar color="primary" position="static">
         <Toolbar variant="regular">
+          <IconButton color={'inherit'} onClick={() =>this.toggleDrawer()}>
+            <MenuIcon/>
+          </IconButton>
 
           <Box display="flex" flexGrow={1}>
             <Typography color="inherit" align='center' variant="h6">{process.env.REACT_APP_TITLE}</Typography>

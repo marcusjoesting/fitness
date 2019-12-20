@@ -3,7 +3,6 @@ const constraints = {
     presence: {
       allowEmpty: false
     },
-
     type: 'string'
   },
 

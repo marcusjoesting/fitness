@@ -63,7 +63,9 @@ export default function Workouts(props) {
         holder[index].title = value
         setWorkouts(holder)
     }
-
+    React.useEffect(() => {
+        props.setWorkouts(workouts)
+    }, [workouts])
 
     const setLifts = (index,lifts) => {
         let holder = [...workouts]

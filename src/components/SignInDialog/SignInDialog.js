@@ -346,7 +346,6 @@ class SignInDialog extends Component {
               <Grid item xs={4}>
                 <AuthProviderList
                   performingAction={performingAction}
-
                   onAuthProviderClick={this.signInWithAuthProvider}
                 />
               </Grid>

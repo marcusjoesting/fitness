@@ -13,8 +13,9 @@ import Bar from '../Bar';
 import Router from '../Router';
 import DialogHost from '../DialogHost';
 import Container from "@material-ui/core/Container";
-
-import { withStyles } from '@material-ui/styles';
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import List from '@material-ui/core/List';
+import MenuList from "../MenuList";
 const initialState = {
   ready: false,
   performingAction: false,
@@ -53,13 +54,17 @@ const initialState = {
     message: '',
     open: false
   },
-  openMenu: false
+  workoutDialog: {
+    open: false
+  },
+  menu: {
+    open: false
+  },
+  workouts: []
+
 };
-const drawerWidth = 240;
 
-const styles = theme => ({
 
-})
 class App extends Component {
   constructor(props) {
     super(props);
@@ -144,7 +149,11 @@ class App extends Component {
 
       signOutDialog: {
         open: false
-      }
+      },
+      workoutDialog: {
+        open: false
+      },
+      workouts: this.state.workouts
     }, callback);
   };
 
@@ -222,7 +231,16 @@ class App extends Component {
       }
     });
   };
+  toggleDrawer = (side, open) => event => {
+    if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
 
+    this.setState({ ...this.state, menu: {open: open} });
+  };
+  setWorkouts = (workouts) => {
+    this.setState({...this.state, workouts:workouts})
+  }
   render() {
     const {
       user,
@@ -230,6 +248,7 @@ class App extends Component {
       theme,
       ready,
       performingAction,
+      workouts,
     } = this.state;
 
     const {
@@ -238,9 +257,10 @@ class App extends Component {
       signInDialog,
       settingsDialog,
       deleteAccountDialog,
-      signOutDialog
+      signOutDialog,
+      workoutDialog
     } = this.state;
-    const { classes } = this.props
+
     const { snackbar } = this.state;
 
     return (
@@ -256,10 +276,9 @@ class App extends Component {
             <>
               <Bar
                 performingAction={performingAction}
-
                 user={user}
                 userData={userData}
-
+                toggleMenu={this.toggleDrawer('left',true)}
                 onSignUpClick={() => this.openDialog('signUpDialog')}
                 onSignInClick={() => this.openDialog('signInDialog')}
 
@@ -267,8 +286,8 @@ class App extends Component {
                 onSettingsClick={() => this.openDialog('settingsDialog')}
                 onSignOutClick={() => this.openDialog('signOutDialog')}
               />
-              <Container maxWidth={'xl'}>
-                <Router user={user} openSnackbar={this.openSnackbar}/>
+              <Container style={{paddingTop: 30}} maxWidth={'xl'}>
+                <Router user={user} setWorkouts={this.setWorkouts} onWorkoutClick={() => this.openDialog('workoutDialog')} openSnackbar={this.openSnackbar}/>
               </Container>
               <DialogHost
                 user={user}
@@ -358,7 +377,15 @@ class App extends Component {
                         deleteAccount: this.deleteAccount
                       }
                     },
-
+                    workoutDialog: {
+                      dialogProps: {
+                        performingAction: performingAction,
+                        onClose: () => this.closeDialog('workoutDialog')
+                      },
+                      props: {
+                          workouts: workouts
+                      }
+                    },
                     signOutDialog: {
                       dialogProps: {
                         open: signOutDialog.open,
@@ -376,7 +403,22 @@ class App extends Component {
                   }
                 }
               />
-
+              <SwipeableDrawer
+                  open={this.state.menu.open}
+                  onClose={this.toggleDrawer('left', false)}
+                  onOpen={this.toggleDrawer('left', true)}
+              >
+                <div
+                    style={{width:250}}
+                    role="presentation"
+                    onClick={this.toggleDrawer('left', false)}
+                    onKeyDown={this.toggleDrawer('left', false)}
+                >
+                  <List>
+                   <MenuList/>
+                  </List>
+                </div>
+              </SwipeableDrawer>
               <Snackbar
                 autoHideDuration={snackbar.autoHideDuration}
                 message={snackbar.message}
@@ -463,4 +505,4 @@ class App extends Component {
   }
 }
 
-export default withStyles(styles)(App);
+export default App;

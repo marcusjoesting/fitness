@@ -76,7 +76,7 @@ class HomeContent extends Component {
 
     if (user) {
       return (
-        <Workouts/>
+        <Workouts setWorkouts={this.props.setWorkouts}/>
       );
     }
 

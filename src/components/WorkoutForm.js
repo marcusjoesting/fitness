@@ -32,7 +32,7 @@ export default function WorkoutForm(props) {
     ]
     return(
         <Grid item xs={12}container spacing={2} justify={'center'}>
-            <Typography variant={'h5'} color={'primary'}>Add workout</Typography>
+            <Typography variant={'h5'} color={'secondary'}>Add workout</Typography>
             <Grid item xs={12}>
                 <TextField fullWidth onChange={(e) => setName(e.target.value)} value={name} label="Name"/>
             </Grid>
@@ -49,7 +49,7 @@ export default function WorkoutForm(props) {
                 <Select value={muscleGroup} isMulti={true} onChange={(selected) => setMuscleGroup(selected.label)} options={muscleGroups}/>
             </Grid>
             <Grid item xs={12}>
-                <Button variant={'contained'} color={'primary'} onClick={addLift} fullWidth>Add {props.title} workout</Button>
+                <Button variant={'contained'} color={'secondary'} onClick={addLift} fullWidth>Add {props.title} workout</Button>
                 <Button varaint={'outlined'} fullWidth onClick={()=> props.setAddLift(false)}>Cancel</Button>
             </Grid>
 

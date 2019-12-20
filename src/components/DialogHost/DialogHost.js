@@ -10,7 +10,7 @@ import SignInDialog from '../SignInDialog';
 import SettingsDialog from '../SettingsDialog';
 import DeleteAccountDialog from '../DeleteAccountDialog';
 import AlertDialog from '../AlertDialog';
-
+import WorkoutDialog from "../WorkoutDialog/WorkoutDialog";
 class DialogHost extends Component {
   render() {
     // Properties
@@ -25,7 +25,7 @@ class DialogHost extends Component {
     const settingsDialog = dialogs.settingsDialog;
     const deleteAccountDialog = dialogs.deleteAccountDialog;
     const signOutDialog = dialogs.signOutDialog;
-
+    const workoutDialog = dialogs.workoutDialog;
     return (
       <>
         <AboutDialog
@@ -33,7 +33,11 @@ class DialogHost extends Component {
 
           {...aboutDialog.props}
         />
+        <WorkoutDialog
+            dialogProps={workoutDialog.dialogProps}
 
+            {...workoutDialog.props}
+            />
         {user &&
           <>
             <AlertDialog
