@@ -9,11 +9,11 @@ import Tooltip from "@material-ui/core/Tooltip";
 export default function Calendar(props) {
         return (<>
                     <Tooltip title={'Add Workout'}>
-                            <Fab color={'secondary'} onClick={() => props.onWorkoutClick}>
+                            <Fab color={'secondary'} onClick={() => props.openWorkout()}>
                                     <AddIcon/>
                             </Fab>
                     </Tooltip>
-                    <FullCalendar defaultView="dayGridMonth" plugins={[ dayGridPlugin ]} />
+                    <FullCalendar events={[{title:'Push Workout', date:'2019-12-21', allDay: true}]} defaultView="dayGridMonth" plugins={[ dayGridPlugin ]} />
 
             </>
         )

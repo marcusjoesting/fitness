@@ -11,10 +11,9 @@ class Router extends Component {
   render() {
     // Properties
     const { user } = this.props;
-    const {onWorkoutClick} = this.props
     // Functions
     const { openSnackbar } = this.props;
-
+    const {onWorkoutClick} = this.props
     return (
       <BrowserRouter basename={process.env.REACT_APP_BASENAME}>
         <Switch>
@@ -26,7 +25,7 @@ class Router extends Component {
             />
           </Route>
           <Route path='/calendar/'>
-            <Calendar onWorkoutClick={onWorkoutClick}/>
+            <Calendar openWorkout={onWorkoutClick}/>
           </Route>
 
           <Route>

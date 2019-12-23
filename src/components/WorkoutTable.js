@@ -6,6 +6,8 @@ import WorkoutForm from "./WorkoutForm";
 import {makeStyles, Typography} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Tooltip from "@material-ui/core/Tooltip";
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import IconButton from "@material-ui/core/IconButton";
 const useStyles = makeStyles(theme=> ({
     paper: {
         padding: theme.spacing(2),
@@ -34,7 +36,15 @@ export default function WorkoutTable(props) {
     const classes = useStyles()
     return (
         <Grid item container justify='center' spacing={2} xs={12} sm={12} md={6}>
-
+            {props.editing &&
+                <Grid item xs={12}>
+                    <Tooltip title={'Delete Workout'}>
+                        <IconButton onClick={() => props.deleteTable(props.index)}>
+                            <HighlightOffIcon/>
+                        </IconButton>
+                    </Tooltip>
+                </Grid>
+            }
 
                 <Grid item xs={12}>
                     <MaterialTable columns={props.columns}
@@ -76,11 +86,7 @@ export default function WorkoutTable(props) {
                 :
                 <Grid item xs={4}><Button fullWidth className={classes.button} variant='contained' color={'secondary'} onClick={() => setAddLift(true)}>+ Add new {props.title} workout +</Button></Grid>
             }
-{/*            <Grid item xs={1}>
-                <Tooltip title={'Delete Table'}>
-                    <Typography onClick={() => props.deleteTable(props.index)} className={classes.delete} variant={'h5'}>X</Typography>
-                </Tooltip>
-            </Grid>*/}
+
         </Grid>
     )
 }

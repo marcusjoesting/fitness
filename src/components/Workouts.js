@@ -10,6 +10,8 @@ import AddIcon from '@material-ui/icons/Add';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Tooltip from "@material-ui/core/Tooltip";
+import EditIcon from '@material-ui/icons/Edit'
+import DoneIcon from '@material-ui/icons/Done';
 const useStyles = makeStyles(theme=> ({
     paper: {
         padding: theme.spacing(2),
@@ -36,11 +38,14 @@ const TableForm = props => {
         setName('')
         props.setAdding(false)
     }
-    return (
-        <div>
-            <TextField onChange={e => setName(e.target.value)} value={name} label={'Table Name'}/>
-            <Button variant='contained' color='primary' onClick={addTable}>Add Table</Button>
-        </div>
+    return (<>
+        <Grid item xs={12}>
+            <TextField fullWidth onChange={e => setName(e.target.value)} value={name} label={'Table Name'}/>
+        </Grid>
+        <Grid item xs={12}>
+            <Button fullWidth variant='contained' color='secondary' onClick={addTable}>Add Table</Button>
+        </Grid>
+        </>
     )
 }
 const columns = [
@@ -89,15 +94,32 @@ export default function Workouts(props) {
     },[workouts])
     return (
         <Grid container justify={'center'} spacing={5}>
-            <Grid item xs={12}><Typography variant={'h4'} align='center' color={'primary'}>Workouts</Typography></Grid>
+            <Grid item xs={12}><Typography variant={'h4'} align='center' color={'primary'}>Workouts</Typography>
+            </Grid>
+
+
 
             {workouts && workouts.map((workout,index) => {
                return (
-                       <WorkoutTable key={workout.name} deleteTable={deleteTable} title={workout.title} lifts={workout.lifts} columns={columns} index={index} setTitle={setWorkoutTitle} setLifts={setLifts}/>
+                       <WorkoutTable key={index} deleteTable={deleteTable} editing={edit} title={workout.title} lifts={workout.lifts} columns={columns} index={index} setTitle={setWorkoutTitle} setLifts={setLifts}/>
                    )
             })}
-
-            <Grid item xs={12}>
+            <Grid item container justify='flex-start' xs={6}>
+                {edit ?
+                    <Tooltip title={'Done'}>
+                        <Fab color={'secondary'} onClick={() => setEdit(false)}>
+                            <DoneIcon/>
+                        </Fab>
+                    </Tooltip>
+                    :
+                    <Tooltip title={'Edit'}>
+                        <Fab color={'secondary'} onClick={() => setEdit(true)}>
+                            <EditIcon/>
+                        </Fab>
+                    </Tooltip>
+                }
+            </Grid>
+            <Grid item container justify='flex-end' xs={6}>
                 {adding ? <TableForm lifts={workouts} setLifts={setWorkouts} setAdding={setAdding}/>
                 :
                     <Tooltip title={'Add Table'}>
@@ -107,6 +129,8 @@ export default function Workouts(props) {
                     </Tooltip>
                 }
             </Grid>
+
+
 
 
         </Grid>

@@ -379,7 +379,7 @@ class App extends Component {
                     },
                     workoutDialog: {
                       dialogProps: {
-                        performingAction: performingAction,
+                        open: workoutDialog.open,
                         onClose: () => this.closeDialog('workoutDialog')
                       },
                       props: {
@@ -433,6 +433,9 @@ class App extends Component {
   }
 
   componentDidMount() {
+    let workouts = localStorage.getItem('workouts')
+    workouts = JSON.parse(workouts)
+    this.setWorkouts(workouts)
     this.onAuthStateChangedObserver = auth.onAuthStateChanged((user) => {
       // The user is not signed in or doesn’t have a user ID.
       if (!user || !user.uid) {

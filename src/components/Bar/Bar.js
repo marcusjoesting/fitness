@@ -50,7 +50,7 @@ class Bar extends Component {
     });
 
     if (nameInitials) {
-      return <Avatar alt="Avatar">{nameInitials}</Avatar>;
+      return <Avatar style={{backgroundColor:'primary'}} alt="Avatar">{nameInitials}</Avatar>;
     }
 
     return <PersonIcon />;
@@ -117,7 +117,7 @@ class Bar extends Component {
 
           {user &&
             <>
-              <IconButton color="inherit" disabled={performingAction} onClick={this.openMenu}>
+              <IconButton color="secondary" disabled={performingAction} onClick={this.openMenu}>
                 {this.getAvatar()}
               </IconButton>
 
