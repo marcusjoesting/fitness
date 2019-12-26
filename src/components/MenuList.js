@@ -24,11 +24,11 @@ export default function MenuList(props) {
                 </ListItemIcon>
                 <ListItemText primary="Workout Schedule"/>
             </ListItem>
-            <ListItem button>
+            <ListItem button onClick={() => window.location.href = '/custom/'}>
                 <ListItemIcon>
                     <PeopleIcon/>
                 </ListItemIcon>
-                <ListItemText primary="Customers"/>
+                <ListItemText primary="Workout Schedule 2"/>
             </ListItem>
             <ListItem button>
                 <ListItemIcon>

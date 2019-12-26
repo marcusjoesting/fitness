@@ -84,7 +84,9 @@ export default function WorkoutDialog(props) {
                                 <Grid item xs={2}>
                                     <Typography className={classes.header}>Edit</Typography>
                                 </Grid>
-
+                                <Grid item xs={12}>
+                                    <Divider/>
+                                </Grid>
                             </>
                             }
                             {workout.value && workout.value.lifts && workout.value.lifts.map(lift => {
@@ -103,13 +105,14 @@ export default function WorkoutDialog(props) {
                                                 <EditIcon/>
                                             </IconButton>
                                         </Grid>
+                                        <Grid item xs={12}>
+                                            <Divider/>
+                                        </Grid>
+
 
                                     </>
                                 )
                             })}
-                            <Grid item xs={12}>
-                                <Button fullWidth variant={'contained'} color={'primary'}>Schedule Workout</Button>
-                            </Grid>
 
                         </Grid>
 
@@ -124,7 +127,8 @@ export default function WorkoutDialog(props) {
                 </DialogContent>
 
                 <DialogActions>
-                    <Button color="primary" onClick={() => props.dialogProps.onClose()}>Cancel</Button>
+                    <Button fullWidth variant={'contained'} color={'primary'}>Schedule Workout</Button>
+                    <Button fullWidth color="primary" onClick={() => props.dialogProps.onClose()}>Cancel</Button>
                 </DialogActions>
             </Dialog>
         );

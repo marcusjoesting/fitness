@@ -6,6 +6,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Calendar from "../Calendar";
 import HomeContent from '../HomeContent';
 import NotFoundContent from '../NotFoundContent';
+import CustomCalendar from "../CustomCalendar";
 
 class Router extends Component {
   render() {
@@ -27,7 +28,6 @@ class Router extends Component {
           <Route path='/calendar/'>
             <Calendar openWorkout={onWorkoutClick}/>
           </Route>
-
           <Route>
             <NotFoundContent />
           </Route>
