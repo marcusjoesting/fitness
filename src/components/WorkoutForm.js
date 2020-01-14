@@ -9,12 +9,14 @@ export default function WorkoutForm(props) {
     const [reps,setReps] = React.useState(0)
     const [sets,setSets] = React.useState(0)
     const [weight,setWeight] = React.useState(0)
-    const [muscleGroup, setMuscleGroup] = React.useState('')
-
+    const [muscleGroup, setMuscleGroup] = React.useState([])
+    const [groupString, setGroupString] = React.useState('')
 
 
     function addLift() {
-        let lift = {name, sets, reps, weight, muscleGroup}
+        let lift = {name, sets, reps, weight, groupString}
+        console.log("Adding new lift:" ,lift)
+
         let workouts = [...props.lifts]
         workouts.push(lift)
         props.setLifts(props.index, workouts)
@@ -30,6 +32,20 @@ export default function WorkoutForm(props) {
         {value: 'Abs', label: 'Abs'},
         {value: 'Back', label: 'Back'}
     ]
+
+    const handleChange = (selected) => {
+        if (selected !== null) {
+            let groups = selected.map((item) => {
+                return item['label']
+            })
+            groups = groups.toString()
+            setGroupString(groups)
+        }
+        else {
+            setGroupString('')
+        }
+        setMuscleGroup(selected)
+    }
     return(
         <Grid item xs={12}container spacing={2} justify={'center'}>
             <Typography variant={'h5'} color={'secondary'}>Add workout</Typography>
@@ -45,11 +61,11 @@ export default function WorkoutForm(props) {
             <Grid item xs={4}>
                <TextField fullWidth onChange={(e) => setWeight(e.target.value)} value={weight} label="Weight"/>
             </Grid>
-            <Grid item xs={4}>
-                <Select value={muscleGroup} isMulti={true} onChange={(selected) => setMuscleGroup(selected.label)} options={muscleGroups}/>
+            <Grid item xs={12}>
+                <Select value={muscleGroup} isMulti={true} onChange={(selected) => handleChange(selected)} options={muscleGroups}/>
             </Grid>
             <Grid item xs={12}>
-                <Button variant={'contained'} color={'secondary'} onClick={addLift} fullWidth>Add {props.title} workout</Button>
+                <Button variant={'contained'} color={'primary'} onClick={addLift} fullWidth>Add {props.title} workout</Button>
                 <Button varaint={'outlined'} fullWidth onClick={()=> props.setAddLift(false)}>Cancel</Button>
             </Grid>
 

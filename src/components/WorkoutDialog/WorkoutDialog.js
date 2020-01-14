@@ -42,9 +42,11 @@ export default function WorkoutDialog(props) {
     const classes = useStyles()
     React.useEffect(() => {
         let holder = []
-        props.workouts.forEach(workout => {
-            holder.push({value: workout, label: workout.title})
-        })
+        if (props.workouts) {
+            props.workouts.forEach(workout => {
+                holder.push({value: workout, label: workout.title})
+            })
+        }
         setOptions(holder)
     }, [props.workouts])
     React.useEffect(() => {

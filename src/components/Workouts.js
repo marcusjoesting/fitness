@@ -39,12 +39,16 @@ const TableForm = props => {
         props.setAdding(false)
     }
     return (<>
-        <Grid item xs={12}>
-            <TextField fullWidth onChange={e => setName(e.target.value)} value={name} label={'Table Name'}/>
-        </Grid>
-        <Grid item xs={12}>
-            <Button fullWidth variant='contained' color='secondary' onClick={addTable}>Add Table</Button>
-        </Grid>
+            <Grid item xs={8}>
+                <TextField fullWidth onChange={e => setName(e.target.value)} value={name} label={'Table Name'}/>
+            </Grid>
+            <Grid item xs={8}>
+                <Button fullWidth variant='contained' color='primary' onClick={addTable}>Add Table</Button>
+            </Grid>
+            <Grid item xs={8}>
+                <Button fullWidth onClick={() => props.setAdding(false)}>Cancel</Button>
+            </Grid>
+
         </>
     )
 }
@@ -53,7 +57,7 @@ const columns = [
     {title: 'Weight', field:'weight'},
     {title: 'Sets', field:'sets'},
     {title: 'Reps', field:'reps'},
-    {title: 'Muscle Group', field:'muscleGroup'}
+    {title: 'Muscle Group', field:'groupString'}
 ]
 
 
@@ -104,35 +108,36 @@ export default function Workouts(props) {
                        <WorkoutTable key={index} deleteTable={deleteTable} editing={edit} title={workout.title} lifts={workout.lifts} columns={columns} index={index} setTitle={setWorkoutTitle} setLifts={setLifts}/>
                    )
             })}
-            <Grid item container justify='flex-start' xs={6}>
-                {edit ?
-                    <Tooltip title={'Done'}>
-                        <Fab color={'secondary'} onClick={() => setEdit(false)}>
-                            <DoneIcon/>
-                        </Fab>
-                    </Tooltip>
+            <Grid item xs={12} container spacing={'2'} justify={'center'}>
+                {adding ?
+                    < Grid item container xs={12} spacing={1} justify={'center'}>
+                        <TableForm lifts={workouts} setLifts={setWorkouts} setAdding={setAdding}/>
+                    </Grid>
                     :
-                    <Tooltip title={'Edit'}>
-                        <Fab color={'secondary'} onClick={() => setEdit(true)}>
-                            <EditIcon/>
-                        </Fab>
-                    </Tooltip>
+                    <Grid xs={1} item container justify={'center'}>
+                        <Tooltip title={'Add Table'}>
+                            <Fab color={'primary'} onClick={() => setAdding(true)}>
+                                <AddIcon/>
+                            </Fab>
+                        </Tooltip>
+                    </Grid>
                 }
+                <Grid item container xs={1} justify={'center'}>
+                    {edit ?
+                        <Tooltip title={'Done'}>
+                            <Fab color={'secondary'} onClick={() => setEdit(false)}>
+                                <DoneIcon/>
+                            </Fab>
+                        </Tooltip>
+                        :
+                        <Tooltip title={'Edit'}>
+                            <Fab color={'primary'} onClick={() => setEdit(true)}>
+                                <EditIcon/>
+                            </Fab>
+                        </Tooltip>
+                    }
+                </Grid>
             </Grid>
-            <Grid item container justify='flex-end' xs={6}>
-                {adding ? <TableForm lifts={workouts} setLifts={setWorkouts} setAdding={setAdding}/>
-                :
-                    <Tooltip title={'Add Table'}>
-                        <Fab color={'secondary'} onClick={() => setAdding(true)}>
-                            <AddIcon/>
-                        </Fab>
-                    </Tooltip>
-                }
-            </Grid>
-
-
-
-
         </Grid>
     )
 
